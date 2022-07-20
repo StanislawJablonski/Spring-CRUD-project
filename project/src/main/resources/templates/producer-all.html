@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>All producers</title>
+</head>
+<body>
+
+<h2>Producers from DB</h2>
+
+<div th:each="producer : ${allProducersFromDB}">
+    <div th:text="${producer.id}"></div>
+    <div th:text="${producer.name}"></div>
+    <div th:text="${producer.country}"></div>
+    <tr th:each="smartphone: ${producer.smartphones}">
+        <p th:text="${smartphone.id}"></p>
+        <p th:text="${smartphone.name}"></p>
+        <p th:text="${smartphone.price}"></p>
+    </tr>
+
+    <div><a th:href="@{/deleteProducer/{id}(id=${producer.id})}">Delete</a></div>
+    <a th:href="@{/updateProducerForm/{id}(id=${producer.id})}">Update</a>
+</div>
+<a th:href = "@{/newProducerForm}"> New Producer</a>
+
+</body>
+</html>

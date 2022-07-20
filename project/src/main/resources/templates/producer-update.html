@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Update producer</title>
+
+</head>
+<body>
+<h2>Update producer</h2>
+
+<form action="#" th:action="@{/updateProducer}" th:object="${producer}"
+      method="POST">
+
+    <table>
+        <tbody>
+        <tr><td>
+            <input type="text" th:field="*{id}"
+                   placeholder="Id" >
+        </td></tr>
+        <tr><td>
+            <input type="text" th:field="*{name}"
+                   placeholder="name" >
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+        </td></tr>
+        <tr><td>
+            <input type="text" th:field="*{country}"
+                   placeholder="country">
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}">
+        </td></tr>
+        <tr><td>
+            <th:block th:each="smartphone : ${listSmartphones}">
+                <div>
+                    <input type="checkbox" th:field="*{smartphones}" th:text="${smartphone.name}" th:value="${smartphone.id}"/>
+                </div>
+            </th:block>
+        </td></tr>
+        <tr><td>
+            <button type="submit" > Save producer</button>
+        </td></tr>
+        </tbody>
+    </table>
+</form>
+
+<hr>
+<a th:href = "@{/producer}"> Producer list</a>
+</div>
+</body>
+</html>

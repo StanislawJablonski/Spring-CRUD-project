@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>All clients</title>
+</head>
+<body>
+
+<h2>Clients from DB</h2>
+
+<div th:each="client : ${allClientsFromDB}">
+    <div th:text="${client.id}"></div>
+    <div th:text="${client.name}"></div>
+    <div th:text="${client.yob}"></div>
+    <div th:text="${client.smartphone}"></div>
+    <div><a th:href="@{/deleteClient/{id}(id=${client.id})}">Delete</a></div>
+    <a th:href="@{/updateClientForm/{id}(id=${client.id})}">Update</a>
+</div>
+<a th:href = "@{/newClientForm}"> New client</a>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>All smartphones</title>
+</head>
+<body>
+
+<h2>Smartphones from DB</h2>
+
+<div th:each="smartphone : ${allSmartphonesFromDB}">
+    <div th:text="${smartphone.id}"></div>
+    <div th:text="${smartphone.name}"></div>
+    <div th:text="${smartphone.price}"></div>
+    <div th:text="${smartphone.client}"></div>
+    <div th:text="${smartphone.producer}"></div>
+    <tr th:each="employee: ${smartphone.employees}">
+        <p th:text="${employee.id}"></p>
+        <p th:text="${employee.name}"></p>
+        <p th:text="${employee.salary}"></p>
+    </tr>
+
+    <div><a th:href="@{/deleteSmartphone/{id}(id=${smartphone.id})}">Delete</a></div>
+    <a th:href="@{/updateSmartphoneForm/{id}(id=${smartphone.id})}">Update</a>
+</div>
+<a th:href = "@{/newSmartphoneForm}"> New Smartphone</a>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Smartphone</title>
+
+</head>
+<body>
+<h2>Add smartphone</h2>
+
+<form action="#" th:action="@{/addSmartphone}" th:object="${smartphone}"
+      method="POST">
+    <table>
+        <tbody>
+        <tr><td>
+            <input type="text" th:field="*{name}"
+                   placeholder="name" >
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+        </td></tr>
+        <tr><td>
+            <input type="text" th:field="*{price}"
+                   placeholder="price">
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+        </td></tr>
+        Producer:<br>
+        <th:block th:each="producer : ${listProducers}">
+            <div>
+                <input type="radio" th:field="*{producer}" th:text="${producer.name}" th:value="${producer.id}"/>
+            </div>
+        </th:block>
+        Client:<br>
+        <th:block th:each="client : ${listClients}">
+            <div>
+                <input type="radio" th:field="*{client}" th:text="${client.name}" th:value="${client.id}"/>
+            </div>
+        </th:block>
+        Employees:<br>
+        <th:block th:each="employee : ${listEmployees}">
+            <div>
+                <input type="checkbox" th:field="*{employees}" th:text="${employee.name}" th:value="${employee.id}"/>
+            </div>
+        </th:block>
+
+        <tr><td>
+            <button type="submit" > Save smartphone</button>
+        </td></tr>
+        </tbody>
+    </table>
+</form>
+
+<hr>
+
+<a th:href = "@{/smartphone}"> Smartphone all</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Client</title>
+
+</head>
+<body>
+<h2>Add client</h2>
+
+<form action="#" th:action="@{/addClient}" th:object="${client}"
+      method="POST">
+    <table>
+        <tbody>
+        <tr><td>
+            <input type="text" th:field="*{name}"
+                   placeholder="name" >
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+        </td></tr>
+        <tr><td>
+            <input type="text" th:field="*{yob}"
+                   placeholder="yob">
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('yob')}" th:errors="*{yob}">
+        </td></tr>
+        <tr><td>
+            <th:block th:each="smartphone : ${listSmartphones}">
+                <div>
+                    <input type="radio" th:field="*{smartphone}" th:text="${smartphone.name}" th:value="${smartphone.id}"/>
+                </div>
+            </th:block>
+        </td></tr>
+        <tr><td>
+            <button type="submit" > Save client</button>
+        </td></tr>
+        </tbody>
+    </table>
+</form>
+
+<hr>
+
+<a th:href = "@{/client}"> Client all</a>
+</div>
+</body>
+</html>

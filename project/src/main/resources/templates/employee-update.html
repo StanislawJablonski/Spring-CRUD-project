@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Update employee</title>
+
+</head>
+<body>
+<h2>Update employee</h2>
+
+<form action="#" th:action="@{/updateEmployee}" th:object="${employee}"
+      method="POST">
+
+    <table>
+        <tbody>
+        <tr><td>
+            <input type="text" th:field="*{id}"
+                   placeholder="Id" >
+        </td></tr>
+        <tr><td>
+            <input type="text" th:field="*{name}"
+                   placeholder="name" >
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+        </td></tr>
+        <tr><td>
+            <input type="text" th:field="*{salary}"
+                   placeholder="salary">
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">
+        </td></tr>
+        <tr><td>
+            <th:block th:each="smartphone : ${listSmartphones}">
+                <div>
+                    <input type="checkbox" th:field="*{smartphones}" th:text="${smartphone.name}" th:value="${smartphone.id}"/>
+                </div>
+            </th:block>
+        </td></tr>
+        <tr><td>
+            <button type="submit" > Save employee</button>
+        </td></tr>
+        </tbody>
+    </table>
+</form>
+
+<hr>
+<a th:href = "@{/employee}"> Employee list</a>
+</div>
+</body>
+</html>
